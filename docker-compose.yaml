@@ -1,0 +1,12 @@
+version: '3'
+
+# Please don't use me. I'm not ready yet :|
+services:
+
+    sampler:
+        build: sampler
+        restart: on-failure
+        # user: to set, needs /etc/passwd entry
+        volumes:
+          - ~/speedplot/data:/data
+          - ~/speedplot/log:/var/log

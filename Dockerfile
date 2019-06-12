@@ -1,17 +1,21 @@
 FROM alpine:3.8
 MAINTAINER Tobias Frei (shuntingyard@gmail.com)
 
-# One run to install packages required and create data dir.
+# Install packages required.
 RUN apk add --no-cache \
-    speedtest-cli && \
-    mkdir "/data"
+    speedtest-cli
+
+# Create data and log dirs.
+RUN mkdir /data \
+    mkdir -p /var/log
 
 # Copy context to image.
-COPY . /
+COPY bin /bin
 
 # Defaults settings for the container:
 ENV INTERVAL 600
-ENV CSV_OUT /data/speedtest.csv
+ENV CSVPATH /data/speedtest.csv
+ENV LOGPATH /var/log/sampler.log
 
 # Start probing on entry.
 ENTRYPOINT ["/bin/speedtest.sh"]

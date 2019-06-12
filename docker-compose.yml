@@ -1,12 +1,14 @@
 version: '3'
-
-# Please don't use me. I'm not ready yet :|
 services:
 
     sampler:
-        build: sampler
-        restart: on-failure
-        # user: to set, needs /etc/passwd entry
+        build: . 
+        image: shuntingyard/speedtest_sampler
+        restart: always
         volumes:
-          - ~/speedplot/data:/data
-          - ~/speedplot/log:/var/log
+          - /data:/data
+          - /data/log:/var/log
+        environment:
+          - INTERVAL=600
+          - CSVPATH=/data/speedtest.csv
+          - LOGPATH=/var/log/sampler.log

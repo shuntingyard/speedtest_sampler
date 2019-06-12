@@ -1,17 +1,29 @@
 #!/bin/sh
 
-# to configure from the environment
-CSV_FILE="$CSV_OUT"
-let interval=$INTERVAL      # interval between probes (sec)
+# show values from env
+#
+echo "`date`: Starting" 1>> "$LOGPATH"
 
-# internal
-let last=0                  # timestamp (secs since epoch)
-let rc=0                    # return code after probe
+# interval between probes (sec)
+echo INTERVAL $INTERVAL 1>> "$LOGPATH"
+# absolute path + filename expected
+echo CSVPATH: "$CSVPATH" 1>> "$LOGPATH"
+# absolute path + filename expected
+echo LOGPATH: "$LOGPATH" 1>> "$LOGPATH"
+
+# set internal variables
+#
+
+# timestamp (secs since epoch)
+let last=0
+# return code after probe
+let rc=0
+
 
 # precondition
-if [ ! -f "$CSV_FILE" ]
+if [ ! -f "$CSVPATH" ]
 then
-    speedtest --csv-header > $CSV_FILE
+    speedtest --csv-header > $CSVPATH
 fi
 
 while true
@@ -19,20 +31,20 @@ do
     let elapsed=$(date +"%s")-$last
     if [ $rc -eq 0 ]
     then
-        echo -n " $elapsed"
+        echo -n " $elapsed" 1>> "$LOGPATH"
     else
-        echo -n " Error, time reset!"
+        echo -n " Error, time reset!" 1>> "$LOGPATH"
         let last=0
         let rc=0
         sleep 2
     fi
 
-    if [ $elapsed -ge $interval ]
+    if [ $elapsed -ge $INTERVAL ]
     then
         let last=$(date +"%s")
-        echo
-        echo probing...
-        speedtest --csv >> $CSV_FILE
+        echo 1>> "$LOGPATH"
+        echo probing... 1>> "$LOGPATH"
+        speedtest --csv >> $CSVPATH 2>> "$LOGPATH"
         let rc=$?
     fi
     sleep 1

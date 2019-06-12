@@ -1,34 +1,36 @@
 #!/bin/sh
 
-# TODO Change Dockerfile and speedtest.sh as CSV_OUT should rather be the
-# file name (as opposed to the entire path).
+# interval between probes (sec),    container default is 600
+# INTERVAL
 
-# --env INTERVAL=seconds allows to override the image's
-# default sampling rate (which is set to 600).
+# absolute path + filename,         container default is /data/speedtest.csv
+# CSVPATH
 
-# This variable (possibly in combination with --env CSV_OUT=<path>/<filename>)
-# allows to override the default output location (which is /data/speedtest.csv
-# in the container's file system.
-# DIR=/data
+# absolute path + filename,         container default is /var/log/sampler.log
+# LOGPATH
 
-# Create DIR if required.
-if [[ "$DIR" && ! -d "$DIR" ]]
-then
-    sudo mkdir -p "$DIR"
-    # WARNING
-    #
-    # It seems best under SELinux to run the
-    # policy label attach command manually, I don't
-    # know why so far.
-    #
-    sudo chcon -Rt svirt_sandbox_file_t "$DIR"
-fi
 
-# Run a container
+# directory structure on the host side
+#
+# To match defaults, create something like:
+#
+# /data/
+# └── log
+#
+# Under SELinux you'll have to authorize the whole path for containers,
+# so you would want to run:
+#
+# $ sudo chcon -Rt svirt_sandbox_file_t /data
+#
+
+# run container
 sudo docker run \
-	--restart always \
-	shuntingyard/speedtest_sampler
-
-#    --env INTERVAL=600 \
-#    --env CSV_OUT=/data/speedtest.csv \
-#    --volume $DIR:/data \
+    --restart always \
+    --volume /data:/data \
+    --volume /data/log:/var/log \
+    --env INTERVAL=600 \
+    --env CSVPATH=/data/speedtest.csv \
+    --env LOGPATH=/var/log/sampler.log \
+    --detach \
+    --name speedtest_sampler_singleton \
+    shuntingyard/speedtest_sampler

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# TODO Change Dockerfile and speedthest.sh as CSV_OUT should rather be the
+# TODO Change Dockerfile and speedtest.sh as CSV_OUT should rather be the
 # file name (as opposed to the entire path).
 
 # --env INTERVAL=seconds allows to override the image's
@@ -17,7 +17,7 @@ then
     sudo mkdir -p "$DIR"
     # WARNING
     #
-    # It seem best under SELinux to run the
+    # It seems best under SELinux to run the
     # policy label attach command manually, I don't
     # know why so far.
     #

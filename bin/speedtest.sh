@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 # show values from env
 #
-echo "`date`: Starting" 1>> "$LOGPATH"
+echo 1>> "$LOGPATH"
+echo "$(date): Starting" 1>> "$LOGPATH"
 
 # interval between probes (sec)
 echo INTERVAL $INTERVAL 1>> "$LOGPATH"
@@ -13,7 +14,6 @@ echo LOGPATH: "$LOGPATH" 1>> "$LOGPATH"
 
 # set internal variables
 #
-
 # timestamp (secs since epoch)
 let last=0
 # return code after probe

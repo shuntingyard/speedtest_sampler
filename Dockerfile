@@ -1,15 +1,13 @@
-FROM alpine:3.8
+FROM python:3.7-slim
 MAINTAINER Tobias Frei (shuntingyard@gmail.com)
 
 # Install packages required.
-RUN apk add --no-cache \
-    speedtest-cli
+
 
 # Create data and log dirs.
-RUN mkdir /data \
-    mkdir -p /var/log
+RUN pip install --trusted-host pypi.python.org speedtest-cli
 
-# Copy context to image.
+# Copy script to image.
 COPY bin /bin
 
 # Defaults settings for the container:

@@ -2,10 +2,11 @@ FROM python:3.7-slim
 MAINTAINER Tobias Frei (shuntingyard@gmail.com)
 
 # Install packages required.
-
+RUN pip install --trusted-host pypi.python.org speedtest-cli
 
 # Create data and log dirs.
-RUN pip install --trusted-host pypi.python.org speedtest-cli
+RUN mkdir /data \
+    mkdir -p /var/log
 
 # Copy script to image.
 COPY bin /bin

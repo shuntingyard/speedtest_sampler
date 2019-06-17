@@ -5,7 +5,7 @@
 Run [speedtest-cli](https://pypi.org/project/speedtest-cli/) at intervals
 inside a Docker container.
 
-## New features 0.0.1
+## New features in 0.0.1
 
 - Containers log to a configurable path.
 

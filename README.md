@@ -3,8 +3,9 @@
 Run [speedtest-cli](https://pypi.org/project/speedtest-cli/) at intervals
 inside a Docker container.
 
-![Docker build status](https://img.shields.io/docker/cloud/automated/shuntingyard/speedtest_sampler.svg)
+![Docker build](https://img.shields.io/docker/cloud/automated/shuntingyard/speedtest_sampler.svg)
 ![Docker pulls](https://img.shields.io/docker/pulls/shuntingyard/speedtest_sampler.svg)
+[![Docker pulls](https://img.shields.io/docker/pulls/shuntingyard/speedtest_sampler.svg)](https://google.ch)
 
 ## Install and run
 

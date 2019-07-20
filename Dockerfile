@@ -5,16 +5,15 @@ MAINTAINER Tobias Frei (shuntingyard@gmail.com)
 RUN pip install --trusted-host pypi.python.org speedtest-cli
 
 # Create data and log dirs.
-RUN mkdir /data \
-    mkdir -p /var/log
+RUN mkdir -p /var/lib/speedtest
 
 # Copy script to image.
 COPY bin /bin
 
 # Defaults settings for the container:
 ENV INTERVAL 600
-ENV CSVPATH /data/speedtest.csv
-ENV LOGPATH /var/log/sampler.log
+ENV OUTFILE /var/lib/speedtest/speedtest.csv
+ENV LOGFILE /var/lib/speedtest/sampler.log
 
 # Start probing on entry.
 ENTRYPOINT ["/bin/speedtest.sh"]

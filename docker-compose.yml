@@ -6,9 +6,6 @@ services:
         image: shuntingyard/speedtest_sampler
         restart: always
         volumes:
-          - /data:/data
-          - /data/log:/var/log
+          - /var/lib/speedtest:/var/lib/speedtest
         environment:
           - INTERVAL=600
-          - CSVPATH=/data/speedtest.csv
-          - LOGPATH=/var/log/sampler.log

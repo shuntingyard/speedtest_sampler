@@ -4,8 +4,8 @@ speedtest_sampler
 Run `speedtest-cli <https://pypi.org/project/speedtest-cli>`_ at intervals
 inside a Docker container.
 
-.. image:: https://img.shields.io/docker/cloud/automated/shuntingyard/speedtest_http.svg
-        :target: https://cloud.docker.com/repository/docker/shuntingyard/speedtest_http/
+.. image:: https://img.shields.io/docker/cloud/automated/shuntingyard/speedtest_sampler.svg
+        :target: https://cloud.docker.com/repository/docker/shuntingyard/speedtest_sampler/
         :alt: Docker Image
 
 Install and run

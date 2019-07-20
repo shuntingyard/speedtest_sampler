@@ -3,17 +3,14 @@
 Run [speedtest-cli](https://pypi.org/project/speedtest-cli/) at intervals
 inside a Docker container.
 
-![Docker build](https://img.shields.io/docker/cloud/automated/shuntingyard/speedtest_sampler.svg)
-![Docker pulls](https://img.shields.io/docker/pulls/shuntingyard/speedtest_sampler.svg)
-[![Docker pulls](https://img.shields.io/docker/pulls/shuntingyard/speedtest_sampler.svg)](https://google.ch)
+[![Docker build](https://img.shields.io/docker/cloud/automated/shuntingyard/speedtest_sampler.svg)](https://hub.docker.com/r/shuntingyard/speedtest_sampler/builds)
+[![Docker pulls](https://img.shields.io/docker/pulls/shuntingyard/speedtest_sampler.svg)](https://hub.docker.com/r/shuntingyard/speedtest_sampler)
 
 ## Install and run
 
 ### Getting started
 
 ```
-docker pull shuntingyard/speedtest_sampler
-
 docker run -d -e OUTFILE=/root/speedtest.csv -v ~:/root shuntingyard/speedtest_sampler
 ```
 
